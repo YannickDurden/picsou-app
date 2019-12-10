@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Libelle" formControlName="libelle">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Cout" formControlName="cout" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Categorie" formControlName="categorie">
+        <mat-option value="{{ categorie.loisirs }}">{{ categorie.loisirs }}</mat-option>
+        <mat-option value="{{ categorie.loisirs }}">{{ categorie.voiture }}</mat-option>
+        <mat-option value="{{ categorie.loisirs }}">{{ categorie.course }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button>Add</button>
+  </form>

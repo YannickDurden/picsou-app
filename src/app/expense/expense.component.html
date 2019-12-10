@@ -1,0 +1,14 @@
+<mat-list *ngIf="expenses; else spinner">
+  <mat-list-item *ngFor="let expense of expenses.depense">
+    <h3 matLine style="font-weight: bold;">{{ expense.libelle }}</h3>
+    <p matLine>
+      <span> {{ expense.cout }} €</span>
+      <span class="demo-2"> - {{ expense.categorie }} </span>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+
+<ng-template #spinner class="wrap-spinner">
+  <mat-spinner style="margin: 0 auto; margin-top: 50%"></mat-spinner>
+</ng-template>
