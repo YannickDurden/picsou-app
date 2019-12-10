@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SheetyService } from '../services/sheety.service';
 import { Subscription } from 'rxjs';
 import { Depenses } from '../depense';
@@ -8,7 +8,7 @@ import { Depenses } from '../depense';
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.css']
 })
-export class ExpenseComponent implements OnInit {
+export class ExpenseComponent implements OnInit, OnDestroy {
   expensesSub: Subscription;
   expenses: Depenses;
 
@@ -19,6 +19,12 @@ export class ExpenseComponent implements OnInit {
       .getExpenses()
       .subscribe((res: Depenses) => this.expenses = res)
     ;
+  }
+
+  ngOnDestroy() {
+    if (this.expensesSub !== undefined && !this.expensesSub.closed) {
+      this.expensesSub.unsubscribe();
+    }
   }
 
 }
