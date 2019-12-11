@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Depense } from '../depense';
+import { sheetyApi } from './sheety';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SheetyService {
-  url = 'https://v2-api.sheety.co/8748591440601807c2e7e9b2e546bf30/handleBudget/depense';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Basic ' + btoa(sheetyApi.username + ':' + sheetyApi.password)
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
   getExpenses() {
-    return this.http.get(this.url);
+    return this.http.get(sheetyApi.url, this.httpOptions);
   }
 
   postExpense(body: { depense: Depense}) {
-    return this.http.post(this.url, body);
+    return this.http.post(sheetyApi.url, body, this.httpOptions);
   }
 }
