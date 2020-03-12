@@ -2,12 +2,12 @@
   <mat-toolbar>
     <span>Picsou App</span>
   </mat-toolbar>
-  <mat-tab-group mat-stretch-tabs>
+  <mat-tab-group mat-stretch-tabs (selectedTabChange)="onTabChanged($event)">
     <mat-tab>
       <ng-template mat-tab-label>
         <!-- <mat-icon class="example-tab-icon">list</mat-icon> -->List
       </ng-template>
-      <app-expense></app-expense>
+      <app-expense [showExpense]="isOpen"></app-expense>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
