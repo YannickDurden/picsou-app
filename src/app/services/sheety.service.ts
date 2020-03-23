@@ -8,12 +8,7 @@ import { sheetyApi } from './sheety';
   providedIn: 'root'
 })
 export class SheetyService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(sheetyApi.username + ':' + sheetyApi.password)
-    })
-  };
+  url = 'https://v2-api.sheety.co/8748591440601807c2e7e9b2e546bf30/budget/depense';
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { Component, ViewChild } from '@angular/core';
+import { ExpenseComponent } from './expense/expense.component';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,11 @@ import { MatTabChangeEvent } from '@angular/material';
 })
 export class AppComponent {
   title = 'handle-budget';
-  showExpense = false;
+  @ViewChild(ExpenseComponent, {read: '', static: false}) private expenseComponent: ExpenseComponent;
 
-  onTabChanged(event: MatTabChangeEvent) {
+  onChange(event) {
     if (event.index === 0) {
-      this.showExpense = true;
-      console.log(this.showExpense);
-    } else {
-      this.showExpense = false;
-      console.log(this.showExpense);
+      this.expenseComponent.getExpenses();
     }
   }
 }

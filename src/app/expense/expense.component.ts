@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
 import { SheetyService } from '../services/sheety.service';
 import { Subscription } from 'rxjs';
 import { Depenses } from '../depense';
@@ -11,22 +11,11 @@ import { Depenses } from '../depense';
 export class ExpenseComponent implements OnInit, OnDestroy, OnChanges {
   expensesSub: Subscription;
   expenses: Depenses;
-  private _showExpense = false;
-  @Input()
-  set showExpense(showExpense: boolean) {
-    this._showExpense = showExpense;
-  }
-  
-  get showExpense() {
-    return this._showExpense;
-  }
+
   constructor(private sheetyService: SheetyService) { }
 
   ngOnInit() {
-    this.expensesSub = this.sheetyService
-      .getExpenses()
-      .subscribe((res: Depenses) => this.expenses = res)
-    ;
+   this.getExpenses();
   }
 
   ngOnDestroy() {
@@ -35,8 +24,11 @@ export class ExpenseComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  getExpenses() {
+    this.expensesSub = this.sheetyService
+      .getExpenses()
+      .subscribe((res: Depenses) => this.expenses = res)
+    ;
   }
 
 }
