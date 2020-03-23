@@ -9,23 +9,25 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
     <title>Picsou App</title>
   </head>
   <body>
     <div class="wrapper">
     <mat-toolbar>
-        <span>Picsou App</span>
+        <span>Handle Budget</span>
       </mat-toolbar>
-      <mat-tab-group mat-stretch-tabs>
+      <mat-tab-group mat-stretch-tabs (selectedTabChange)="onChange($event)">
         <mat-tab >
             <ng-template mat-tab-label>
-              <!-- <mat-icon class="example-tab-icon">list</mat-icon> -->List
+              List
             </ng-template>
           <app-expense></app-expense>
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <!-- <mat-icon class="example-tab-icon">add</mat-icon> -->Add
+            Add
           </ng-template>
           <app-add-expense></app-add-expense>
         </mat-tab>

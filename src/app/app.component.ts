@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ExpenseComponent } from './expense/expense.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'handle-budget';
+  @ViewChild(ExpenseComponent, {read: '', static: false}) private expenseComponent: ExpenseComponent;
+
+  onChange(event) {
+    if (event.index === 0) {
+      this.expenseComponent.getExpenses();
+    }
+  }
 }

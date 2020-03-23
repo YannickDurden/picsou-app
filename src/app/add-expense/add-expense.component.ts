@@ -60,4 +60,11 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
       );
   }
 
+  snackBarMessage() {
+    this.snackBar.open(
+      'Opération ajouté',
+      'close',
+      { duration: 2000 }
+    );
+  }
 }
